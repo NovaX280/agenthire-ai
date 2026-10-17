@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AgentHire AI — Agentic Recruitment Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#05060a;--card:rgba(255,255,255,.04);--bd:rgba(255,255,255,.09);--tx:#fafafa;--mu:#8a8a8a;--b:#ffffff;--v:#a3a3a3;--ok:#ffffff;--wn:#bdbdbd;--bad:#8a8a8a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;min-height:100%;font:15px/1.55 Inter,system-ui,sans-serif;color:var(--tx);background:var(--bg)}
+#app,#modal{position:relative;z-index:1}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 85% 75% at 50% 25%,#000 25%,transparent 100%);mask-image:radial-gradient(ellipse 85% 75% at 50% 25%,#000 25%,transparent 100%)}
+body::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(640px 420px at 18% 0%,rgba(165,180,255,.16),transparent 70%),radial-gradient(520px 420px at 92% 18%,rgba(255,255,255,.08),transparent 70%),radial-gradient(760px 420px at 50% 112%,rgba(140,150,210,.14),transparent 70%);animation:breathe 9s ease-in-out infinite alternate}
+@keyframes breathe{from{opacity:.55}to{opacity:1}}
+a{color:inherit;text-decoration:none}h1,h2,h3,p{margin:0}
+.g{background:linear-gradient(135deg,var(--b),var(--v));-webkit-background-clip:text;background-clip:text;color:transparent}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:20px;backdrop-filter:blur(14px);transition:.25s}
+.card.h:hover{border-color:rgba(255,255,255,.5);transform:translateY(-3px);box-shadow:0 10px 40px -12px rgba(255,255,255,.12);cursor:pointer}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:12px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:600 14px Inter;cursor:pointer;transition:.2s}
+.btn:hover{border-color:var(--b)}.btn.p{color:#000;background:linear-gradient(135deg,var(--b),var(--v));border:0;box-shadow:0 8px 28px -8px rgba(255,255,255,.18)}
+.wrap{max-width:1120px;margin:auto;padding:0 20px}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+.logo{font-weight:800;font-size:18px;display:flex;gap:10px;align-items:center}.logo i{color:#000;width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--b),var(--v));display:grid;place-items:center;font-style:normal;font-size:15px}
+.hero{text-align:center;padding:70px 0 40px}.hero h1{font-size:clamp(36px,6vw,66px);font-weight:800;letter-spacing:-.03em;line-height:1.05}
+.hero p{max-width:640px;margin:20px auto 30px;color:var(--mu);font-size:17px}
+.pill{display:inline-block;padding:5px 12px;border:1px solid var(--bd);border-radius:99px;font-size:12px;color:var(--mu);margin-bottom:22px;background:var(--card)}
+.grid{display:grid;gap:16px}.c4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}.c3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}.c2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.sec{padding:50px 0}.sec h2{font-size:30px;font-weight:700;letter-spacing:-.02em;margin-bottom:8px}.mu{color:var(--mu)}.sm{font-size:13px}
+.flow{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center;margin-top:40px}
+.node{padding:10px 16px;border-radius:12px;border:1px solid var(--bd);background:var(--card);font-size:13px;font-weight:600}
+.arr{width:28px;height:2px;background:repeating-linear-gradient(90deg,var(--b) 0 5px,transparent 5px 10px);background-size:20px 2px;animation:mv 1s linear infinite}
+@keyframes mv{to{background-position:20px 0}}
+.shell{display:grid;grid-template-columns:230px 1fr;min-height:100vh}
+.side{padding:20px 14px;border-right:1px solid var(--bd);background:rgba(0,0,0,.6);position:sticky;top:0;height:100vh;overflow-y:auto}
+.side{overflow-y:auto}.log{font:12px/1.7 ui-monospace,Menlo,monospace;color:var(--mu);max-height:260px;overflow:hidden}.msg{padding:10px 14px;border-radius:14px;max-width:85%;font-size:14px}.msg.a{background:var(--card);border:1px solid var(--bd)}.msg.u{background:#fff;color:#000;margin-left:auto}
+.side a{display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:10px;color:var(--mu);font-weight:500;margin-bottom:4px}
+.side a:hover{background:var(--card);color:var(--tx)}.side a.on{background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.08));color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+.main{padding:22px 28px 50px;min-width:0}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;gap:12px}
+.top input{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px 14px;color:var(--tx);width:min(320px,100%);font:14px Inter}
+.av{color:#000;width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--b),var(--v));display:grid;place-items:center;font-weight:700;font-size:13px}
+.in{width:100%;background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:10px 12px;color:var(--tx);font:14px Inter;margin-top:6px}.in:focus{outline:0;border-color:#fff}label{font-size:12px;color:var(--mu)}.chip{cursor:pointer;padding:7px 14px;border-radius:99px;border:1px solid var(--bd);font-size:13px;background:var(--card)}.chip.on{background:#fff;color:#000;border-color:#fff}
+.kpi b{display:block;font-size:32px;font-weight:700;letter-spacing:-.02em}
+.bar{height:8px;border-radius:9px;background:rgba(255,255,255,.07);overflow:hidden}.bar i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--b),var(--v));transition:width 1s}
+.tag{display:inline-block;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:600}
+.t-ok{background:rgba(255,255,255,.14);color:var(--ok)}.t-wn{background:rgba(255,255,255,.14);color:var(--wn)}.t-bad{background:rgba(255,255,255,.14);color:var(--bad)}.t-b{background:rgba(255,255,255,.16);color:#d4d4d4}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px}
+.stack>*+*{margin-top:14px}
+.pipe{display:flex;gap:0;overflow-x:auto;padding:6px 0 14px;align-items:center}.pipe .node{white-space:nowrap}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);display:grid;place-items:center;padding:20px;z-index:9}
+.modal .card{max-width:520px;width:100%;background:#0a0a0a}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ok);margin-right:6px;box-shadow:0 0 10px var(--ok)}.dot.run{background:var(--b);box-shadow:0 0 10px var(--b);animation:pl 1.2s infinite}
+@keyframes pl{50%{opacity:.3}}
+.vid{aspect-ratio:16/9;border-radius:16px;background:linear-gradient(135deg,#0a0a0a,#171717);display:grid;place-items:center;border:1px solid var(--bd);text-align:center;padding:20px}
+.orb{width:84px;height:84px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff,var(--v));margin:0 auto 14px;animation:pl 2.4s infinite}
+@media(max-width:820px){.shell{grid-template-columns:1fr}.side{position:static;height:auto;display:flex;overflow-x:auto;gap:6px;padding:10px;border-right:0;border-bottom:1px solid var(--bd)}.side a{white-space:nowrap;margin:0}.side .logo{display:none}.main{padding:18px 16px 40px}}
+</style></head>
+<body><div id="app"></div>
+<div id="modal"></div>
+<script>
+const $=s=>document.querySelector(s);
+const AG=[
+["Job Intelligence Agent","Completed","Parse the job description into essential skills, preferences and experience requirements.","Job Description","Structured Job Profile","1.2s"],
+["Resume Analysis Agent","Completed","Extract candidate education, experience, projects and certifications.","Candidate Resume","Structured Candidate Profile","2.4s"],
+["Skill Extraction Agent","Completed","Detect and normalise technical skills with proficiency evidence.","Candidate Profile","Skill Graph","1.8s"],
+["Candidate Matching Agent","Completed","Compute semantic match between candidate skills and job requirements.","Skill Graph + Job Profile","Match Score + Evidence","2.9s"],
+["Skill Gap Agent","Completed","Identify missing or weak skills and propose a learning path.","Match Result","Gap Report","1.6s"],
+["Interview Agent","Running","Conduct an adaptive interview where each question depends on the previous answer.","Gap Report + Answers","Next Question","3.1s"],
+["Evaluation Agent","Queued","Score technical knowledge, problem solving, communication and role understanding.","Interview Transcript","Interview Scorecard","—"],
+["Explainability Agent","Queued","Explain every score with traceable evidence. Recruiter keeps the final decision.","All Agent Outputs","Reasoning Summary","—"]];
+const SK=[["Python",100,"Strong"],["Machine Learning",90,"Strong"],["SQL",70,"Moderate"],["TensorFlow",40,"Weak"],["MLOps",20,"Missing"]];
+const tagc=l=>({Strong:"t-ok",Moderate:"t-b",Weak:"t-wn",Missing:"t-bad"}[l]);
+const bar=(p,h=8)=>`<div class="bar" style="height:${h}px"><i style="width:${p}%"></i></div>`;
+const NAV=[["dashboard","▦","Dashboard"],["agents","✦","AI Agents"],["candidate","◉","Candidate Intelligence"],["gaps","△","Skill Gaps"],["interview","▶","AI Interview"],["jobs","＋","Create Job"],["compare","⇄","Compare"],["analytics","◔","Analytics"],["report","❒","Report"],["assistant","✧","AI Assistant"],["monitor","◎","Live Monitoring"],["parser","⎘","Resume Parser"],["adaptive","↯","Adaptive Interview"],["fairness","⚖","Fairness Monitor"]];
+
+function landing(){return`<div class="wrap">
+<div class="nav"><div class="logo"><i>✦</i>AgentHire AI</div><a class="btn" href="#/dashboard">Open Platform →</a></div>
+<div class="hero"><span class="pill">Multi-agent • Explainable • Human-in-the-loop</span>
+<h1>Hire Smarter.<br><span class="g">Discover Better Talent.</span></h1>
+<p>An Agentic AI recruitment platform that understands jobs, analyzes candidates, identifies skill gaps, conducts adaptive interviews, and provides explainable recruitment insights.</p>
+<a class="btn p" href="#/dashboard">Get Started</a> <a class="btn" href="#/agents">Explore AI Agents</a>
+<div class="flow">${["Job Description","AI Agents","Candidate Intelligence","AI Interview","Explainable Insights","Recruiter Decision"].map((n,i,a)=>`<span class="node">${n}</span>${i<a.length-1?'<span class="arr"></span>':''}`).join("")}</div></div>
+<div class="sec"><h2>Eight agents. One transparent pipeline.</h2><p class="mu" style="margin-bottom:24px">Each agent has a single responsibility and passes structured output to the next.</p>
+<div class="grid c4">${AG.map((a,i)=>`<a href="#/agents" class="card h"><span class="tag t-b">Agent ${i+1}</span><h3 style="margin:12px 0 6px;font-size:16px">${a[0]}</h3><p class="mu sm">${a[2]}</p></a>`).join("")}</div></div>
+<div class="sec"><div class="grid c3">
+${[["Evidence-based","Every match score links back to resume, project and interview evidence."],["Skill-gap detection","Missing skills turn into a concrete learning path for candidates."],["Recruiter decides","AI recommends and explains. It never auto-rejects a candidate."]].map(x=>`<div class="card"><h3>${x[0]}</h3><p class="mu" style="margin-top:8px">${x[1]}</p></div>`).join("")}</div></div>
+<div class="sec"><h2>Beyond screening</h2><p class="mu" style="margin-bottom:24px">Built for transparent, human-led hiring.</p><div class="grid c3">${[["AI Recruiter Assistant","Ask questions about your pipeline in plain language.","assistant"],["Live Multi-Agent Monitoring","Watch all eight agents work in real time.","monitor"],["Smart Resume Parser","Unstructured resume to structured profile.","parser"],["Adaptive AI Interview","Difficulty rises and falls with each answer.","adaptive"],["Bias & Fairness Monitor","Audit selection rates and mask sensitive fields.","fairness"]].map(x=>`<a href="#/${x[2]}" class="card h"><h3>${x[0]}</h3><p class="mu sm" style="margin-top:6px">${x[1]}</p></a>`).join("")}</div></div><div class="card" style="text-align:center;padding:44px;margin:30px 0 60px"><h2 style="font-size:28px">See the agents work on a real shortlist</h2><p class="mu" style="margin:10px 0 22px">Explore the live prototype with realistic recruitment data.</p><a class="btn p" href="#/dashboard">Launch Recruiter Dashboard</a></div></div>`}
+
+function shell(p,body){return`<div class="shell"><aside class="side"><div class="logo" style="margin:4px 8px 22px"><i>✦</i>AgentHire AI</div>
+${NAV.map(n=>`<a href="#/${n[0]}" class="${n[0]==p?'on':''}"><span>${n[1]}</span>${n[2]}</a>`).join("")}<a href="#/"><span>←</span>Landing page</a></aside>
+<main class="main"><div class="top"><input placeholder="Search jobs, candidates, skills…"><div style="display:flex;gap:14px;align-items:center"><span title="Notifications">🔔</span><div class="av">RK</div></div></div><div class="card" style="padding:8px 14px;margin-bottom:18px;display:flex;gap:10px;align-items:center"><span class="dot run"></span><span class="mu sm" style="white-space:nowrap">AGENT PULSE</span><span id="pulse" class="sm" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis"></span></div>${body}</main></div>`}
+
+function dashboard(){
+const K=[["Applications",128],["AI Screened",128],["Shortlisted",42],["Interviews",18]];
+const F=[["Applications",128],["AI Screening",128],["Shortlisted",42],["Interview",18],["Recruiter Review",9]];
+const M=[["90–100%",12],["75–89%",30],["60–74%",44],["<60%",42]];
+const J=[["AI/ML Engineer",86,"Active"],["Data Analyst",64,"Active"],["Backend Developer",41,"Active"],["MLOps Engineer",27,"Review"],["Frontend Developer",35,"Active"]];
+return shell("dashboard",`<h1 style="font-size:26px;margin-bottom:4px">Recruiter Dashboard</h1><p class="mu" style="margin-bottom:22px">Recruiter review required before any candidate status changes.</p>
+<div class="grid c4">${K.map(k=>`<div class="card kpi"><span class="mu sm">${k[0]}</span><b>${k[1]}</b></div>`).join("")}</div>
+<div class="grid c2" style="margin-top:16px"><div class="card"><h3 style="margin-bottom:16px">Recruitment Funnel</h3><div class="stack">${F.map(f=>`<div><div class="row sm"><span>${f[0]}</span><b>${f[1]}</b></div>${bar(f[1]/128*100,10)}</div>`).join("")}</div></div>
+<div class="card"><h3 style="margin-bottom:16px">Candidate Match Distribution</h3><div style="display:flex;align-items:flex-end;gap:14px;height:170px">${M.map(m=>`<div style="flex:1;text-align:center"><div style="height:${m[1]*3.2}px;border-radius:10px 10px 4px 4px;background:linear-gradient(180deg,var(--b),var(--v));opacity:.9"></div><div class="sm mu" style="margin-top:8px">${m[0]}</div><b class="sm">${m[1]}</b></div>`).join("")}</div></div></div>
+<div class="card" style="margin-top:16px"><h3 style="margin-bottom:14px">Active Jobs</h3><div class="stack">${J.map(j=>`<div class="row"><div><b>${j[0]}</b><div class="mu sm">${j[1]} candidates</div></div><a href="#/candidate" class="tag ${j[2]=='Active'?'t-ok':'t-wn'}">${j[2]}</a></div>`).join("")}</div></div>`)}
+
+function agents(){return shell("agents",`<h1 style="font-size:26px;margin-bottom:4px">AI Agent Control Center</h1><p class="mu" style="margin-bottom:20px">Live view of the multi-agent pipeline. Click any agent for details.</p>
+<div class="card"><div class="pipe">${AG.map((a,i)=>`<span class="node" style="cursor:pointer" onclick="openAg(${i})"><span class="dot ${a[1]=='Running'?'run':''}" style="${a[1]=='Queued'?'background:#555;box-shadow:none':''}"></span>${a[0].replace(" Agent","")}</span>${i<7?'<span class="arr" style="min-width:26px"></span>':''}`).join("")}</div></div>
+<div class="grid c4" style="margin-top:16px">${AG.map((a,i)=>`<div class="card h" onclick="openAg(${i})"><div class="row"><span class="tag t-b">Agent ${i+1}</span><span class="tag ${a[1]=='Completed'?'t-ok':a[1]=='Running'?'t-b':'t-wn'}">${a[1]}</span></div><h3 style="font-size:16px;margin:10px 0 6px">${a[0]}</h3><p class="mu sm" style="min-height:62px">${a[2]}</p><div class="sm" style="margin-top:10px"><span class="mu">In:</span> ${a[3]}<br><span class="mu">Out:</span> ${a[4]}<br><span class="mu">Time:</span> ${a[5]}</div></div>`).join("")}</div>`)}
+function openAg(i){const a=AG[i];$("#modal").innerHTML=`<div class="modal" onclick="if(event.target==this)this.remove()"><div class="card"><div class="row"><span class="tag t-b">Agent ${i+1} of 8</span><b style="cursor:pointer" onclick="$('#modal').innerHTML=''">✕</b></div><h2 style="font-size:22px;margin:12px 0">${a[0]}</h2><p class="mu">${a[2]}</p><div class="grid" style="grid-template-columns:1fr 1fr;margin-top:16px"><div class="card" style="padding:14px"><span class="mu sm">Input</span><br>${a[3]}</div><div class="card" style="padding:14px"><span class="mu sm">Output</span><br>${a[4]}</div></div><p class="sm mu" style="margin-top:14px">Status: ${a[1]} • Processing time: ${a[5]} • Hands off to: ${AG[i+1]?AG[i+1][0]:"Recruiter Dashboard"}</p></div></div>`}
+
+function radar(){const L=["Skill Match","Project Relevance","Interview","Experience","Overall"],V=[91,94,84,78,87],c=130,r=95;
+const pt=(i,v)=>{const a=-Math.PI/2+i*2*Math.PI/5;return[c+Math.cos(a)*r*v/100,c+Math.sin(a)*r*v/100]};
+const poly=v=>v.map((x,i)=>pt(i,x).join(",")).join(" ");
+return`<svg viewBox="0 0 260 260" style="width:100%;max-width:320px;display:block;margin:auto">${[25,50,75,100].map(g=>`<polygon points="${poly(Array(5).fill(g))}" fill="none" stroke="rgba(255,255,255,.1)"/>`).join("")}
+<polygon points="${poly(V)}" fill="rgba(255,255,255,.28)" stroke="#fff" stroke-width="2"/>${L.map((l,i)=>{const[x,y]=pt(i,122);return`<text x="${x}" y="${y}" fill="#8a8a8a" font-size="9" text-anchor="middle">${l}</text>`}).join("")}</svg>`}
+
+function candidate(){return shell("candidate",`<div class="row" style="flex-wrap:wrap"><div><h1 style="font-size:26px">Ananya Ramesh</h1><p class="mu">Applied for AI/ML Engineer • Chennai, India</p></div><span class="tag t-ok" style="font-size:13px;padding:6px 14px">Strong Match • Requires Recruiter Review</span></div>
+<div class="grid c2" style="margin-top:18px"><div class="card"><h3 style="margin-bottom:6px">Match Profile</h3>${radar()}
+<div class="stack" style="margin-top:14px">${[["Overall Match",87],["Skill Match",91],["Project Relevance",94],["Interview",84],["Experience",78]].map(m=>`<div><div class="row sm"><span>${m[0]}</span><b>${m[1]}%</b></div>${bar(m[1])}</div>`).join("")}</div></div>
+<div class="stack"><div class="card"><h3 style="margin-bottom:12px">Explainable AI — Why 87%?</h3>
+${["Python detected in resume","Machine Learning project detected","SQL certification detected","2 relevant projects identified"].map(e=>`<div class="sm" style="color:var(--ok);margin-bottom:6px">✓ ${e}</div>`).join("")}
+${["Limited TensorFlow experience","No MLOps project detected"].map(e=>`<div class="sm" style="color:var(--wn);margin-bottom:6px">⚠ ${e}</div>`).join("")}
+<div class="flow" style="margin-top:14px;justify-content:flex-start">${["Resume","Projects","Certifications","Interview","AI Analysis"].map((n,i,a)=>`<span class="node">${n}</span>${i<4?'<span class="arr" style="width:14px"></span>':''}`).join("")}</div></div>
+<div class="card"><h3 style="margin-bottom:8px">AI Reasoning Summary</h3><p class="mu sm">Strong alignment on core ML skills and project depth. Deployment-related evidence is limited. This is decision support only — the recruiter makes the final call.</p></div>
+<div class="card"><h3 style="margin-bottom:10px">Profile</h3><p class="sm"><b>Education:</b> B.E. Computer Science (AI & DS)<br><b>Projects:</b> Fraud detection with XGBoost, Resume NLP classifier<br><b>Certifications:</b> SQL for Data Science, Google ML Crash Course<br><b>Experience:</b> 1 ML internship (8 months)</p></div></div></div>`)}
+
+function gaps(){return shell("gaps",`<h1 style="font-size:26px;margin-bottom:4px">Skill Gap Analysis</h1><p class="mu" style="margin-bottom:20px">Required skill vs. candidate skill — Ananya Ramesh</p>
+<div class="grid c2"><div class="card"><h3 style="margin-bottom:16px">Required vs Candidate</h3><div class="stack">${SK.map(s=>`<div><div class="row sm"><span>${s[0]}</span><span><b>${s[1]}%</b> <span class="tag ${tagc(s[2])}">${s[2]}</span></span></div>${bar(s[1],10)}</div>`).join("")}</div></div>
+<div class="stack"><div class="card"><h3 style="margin-bottom:10px">Skill Gap Agent Analysis</h3><p class="mu sm" style="margin-bottom:10px">Missing / weak skills:</p><span class="tag t-bad">MLOps</span> <span class="tag t-wn">TensorFlow</span></div>
+<div class="card"><h3 style="margin-bottom:12px">Recommended Learning Path</h3>${["TensorFlow Fundamentals","Model Deployment","Docker","MLOps"].map((s,i)=>`<div class="row" style="justify-content:flex-start;margin-bottom:10px"><div class="av" style="width:28px;height:28px;font-size:12px">${i+1}</div>${s}</div>`).join("")}</div></div></div>`)}
+
+let Q=0,st="idle",sec=0,tm;
+const QS=[["Explain the difference between Random Forest and XGBoost.",""],["You mentioned boosting reduces bias. When could it hurt generalisation?","Follow-up generated from your mention of boosting."],["How would you deploy this fraud model and monitor drift?","Probing the detected MLOps gap."]];
+function interview(){clearInterval(tm);return shell("interview",`<div class="row" style="flex-wrap:wrap"><div><h1 style="font-size:26px">AI Interview</h1><p class="mu">AI/ML Engineer • Adaptive questions</p></div><span class="tag t-b">Question ${Q+3>10?10:Q+3} of 10 • <span id="tm">00:00</span></span></div>
+<div class="grid c2" style="margin-top:16px"><div class="vid"><div><div class="orb"></div><b>AI Interviewer</b><p id="q" style="margin-top:10px;font-size:17px">${QS[Q][0]}</p><p class="mu sm" style="margin-top:8px">${QS[Q][1]}</p></div></div>
+<div class="card stack"><div><span class="mu sm">Status</span><div id="stt" style="font-weight:600;margin-top:4px">Ready when you are</div></div><div id="ans" class="sm mu" style="min-height:70px">Your transcript will appear here (mock input — no microphone needed).</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn p" onclick="iv('start')">Start Interview</button><button class="btn" onclick="iv('rec')">Record Answer</button><button class="btn" onclick="iv('sub')">Submit Answer</button><button class="btn" onclick="iv('next')">Next Question</button></div></div></div>`)}
+function iv(a){const s=$("#stt"),t=$("#ans");
+if(a=="start"){clearInterval(tm);sec=0;tm=setInterval(()=>{sec++;const e=$("#tm");if(e)e.textContent=String(sec/60|0).padStart(2,0)+":"+String(sec%60).padStart(2,0)},1000);s.innerHTML='<span class="dot"></span>Interview in progress'}
+if(a=="rec"){s.innerHTML='<span class="dot run"></span>Recording…';t.textContent="“Random Forest averages many independent trees to cut variance, while XGBoost builds trees sequentially to correct earlier errors…”"}
+if(a=="sub"){s.innerHTML='<span class="dot run"></span>AI is analyzing your response…';setTimeout(()=>{s.innerHTML='<span class="dot"></span>Analysis done — next question adapted to your answer'},1500)}
+if(a=="next"){Q=(Q+1)%QS.length;$("#q").textContent=QS[Q][0];t.textContent="Awaiting your answer…";s.textContent="Ready"}}
+
+const JOBS=[["AI/ML Engineer",86],["Data Analyst",64],["Backend Developer",41],["MLOps Engineer",27],["Frontend Developer",35]];
+const hb=(L,u="%",m=100)=>`<div class="stack">${L.map(x=>`<div><div class="row sm"><span>${x[0]}</span><b>${x[1]}${u}</b></div>${bar(x[1]/m*100)}</div>`).join("")}</div>`;
+const toast=t=>{$("#modal").innerHTML=`<div class="card" style="position:fixed;bottom:24px;right:24px;padding:12px 18px;background:#0a0a0a;z-index:20">${t}</div>`;setTimeout(()=>$("#modal").innerHTML="",2200)};
+const fld=(l,v,t="input")=>`<div><label>${l}</label>${t=="area"?`<textarea class="in" rows="5">${v}</textarea>`:`<input class="in" value="${v}">`}</div>`;
+function jobs(){return shell("jobs",`<h1 style="font-size:26px;margin-bottom:4px">Create Job</h1><p class="mu" style="margin-bottom:20px">The Job Intelligence Agent turns your description into a structured profile.</p>
+<div class="grid c2"><div class="card stack">${fld("Job Title","AI/ML Engineer")}${fld("Job Description","Build and ship machine learning models for fraud detection and ranking. Work with data scientists to productionise pipelines.","area")}
+<div class="grid" style="grid-template-columns:1fr 1fr">${fld("Required Skills","Python, Machine Learning, SQL, Statistics")}${fld("Preferred Skills","TensorFlow, MLOps")}${fld("Education","B.E./B.Tech in CS or related")}${fld("Experience","1–3 years")}${fld("Location","Chennai / Hybrid")}<div><label>Employment Type</label><select class="in"><option>Full-time</option><option>Internship</option><option>Contract</option></select></div></div>
+<button class="btn p" onclick="analyzeJob()">✦ Analyze Job with AI</button></div><div id="ja" class="card mu">AI analysis will appear here.</div></div>`)}
+function analyzeJob(){const o=$("#ja");o.innerHTML=`<div class="stack"><b><span class="dot run"></span>Job Intelligence Agent is analyzing…</b><div class="bar"><i id="pb" style="width:5%"></i></div><p class="sm mu">Parsing skills → ranking importance → extracting requirements</p></div>`;setTimeout(()=>$("#pb")&&($("#pb").style.width="100%"),50);
+setTimeout(()=>{o.className="card";o.innerHTML=`<h3 style="margin-bottom:12px">AI Job Analysis</h3><p class="mu sm" style="margin-bottom:8px">Essential Skills</p>${hb([["Python",95],["Machine Learning",92],["SQL",78],["Statistics",72]])}<p class="mu sm" style="margin:16px 0 8px">Preferred Skills</p>${hb([["TensorFlow",55],["MLOps",48]])}<div class="grid" style="grid-template-columns:1fr 1fr;margin-top:16px"><div class="card" style="padding:14px"><span class="mu sm">Experience</span><br>1–3 years in applied ML</div><div class="card" style="padding:14px"><span class="mu sm">Education</span><br>B.E./B.Tech CS or related</div></div>`},1800)}
+
+const CD=[["Ananya Ramesh",91,94,84,78,"B.E. CSE (AI&DS)","MLOps, TensorFlow","Strong Match","t-ok"],["Priya Nair",84,80,88,90,"M.Tech Data Science","Docker, SQL","Strong Match","t-ok"],["Arjun Mehta",72,65,70,60,"B.Tech IT","TensorFlow, Statistics","Skill Gap Identified","t-wn"],["Sana Iqbal",68,74,0,82,"MCA","Interview pending","Requires Review","t-b"]];let SEL=[0,1,2];
+function cmpBody(){return`<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px">${CD.map((c,i)=>`<span class="chip ${SEL.includes(i)?'on':''}" onclick="tg(${i})">${c[0]}</span>`).join("")}</div>
+<div class="grid c3">${SEL.map(i=>{const c=CD[i];return`<div class="card"><div class="row"><h3>${c[0]}</h3></div><span class="tag ${c[8]}">${c[7]}</span><div class="stack" style="margin-top:16px">${[["Skill Match",c[1]],["Project Relevance",c[2]],["Interview",c[3]],["Experience",c[4]]].map(m=>`<div><div class="row sm"><span>${m[0]}</span><b>${m[1]?m[1]+"%":"Pending"}</b></div>${bar(m[1])}</div>`).join("")}</div><p class="sm" style="margin-top:14px"><span class="mu">Education:</span> ${c[5]}<br><span class="mu">Skill gap:</span> ${c[6]}</p></div>`}).join("")}</div>`}
+function tg(i){SEL=SEL.includes(i)?SEL.filter(x=>x!=i):[...SEL,i];$("#cw").innerHTML=cmpBody()}
+function compare(){return shell("compare",`<h1 style="font-size:26px;margin-bottom:4px">Candidate Comparison</h1><p class="mu" style="margin-bottom:20px">Select candidates to compare. Labels support review; they are not rankings.</p><div id="cw">${cmpBody()}</div>`)}
+
+function analytics(){const K=[["Total Applications","128"],["Candidates Screened","128"],["Interviews Completed","18"],["Avg Match Score","74%"],["Avg Interview Score","79%"]];
+const C=(t,b)=>`<div class="card"><h3 style="margin-bottom:14px">${t}</h3>${b}</div>`;
+return shell("analytics",`<h1 style="font-size:26px;margin-bottom:20px">Analytics</h1><div class="grid c4">${K.map(k=>`<div class="card kpi"><span class="mu sm">${k[0]}</span><b>${k[1]}</b></div>`).join("")}</div>
+<div class="grid c2" style="margin-top:16px">${C("Candidate Pipeline",hb([["Applications",128],["AI Screening",128],["Shortlisted",42],["Interview",18],["Recruiter Review",9]],"",128))}${C("Applications by Job",hb(JOBS,"",86))}${C("Skill Distribution",hb([["Python",92],["SQL",74],["Machine Learning",68],["Cloud",41],["MLOps",22]]))}${C("Interview Scores",hb([["Technical Knowledge",86],["Problem Solving",82],["Communication",78],["Role Understanding",91]]))}${C("Match Distribution",hb([["90–100%",12],["75–89%",30],["60–74%",44],["<60%",42]],"",44))}${C("Skill Gap Distribution",hb([["MLOps",46],["TensorFlow",38],["Docker",31],["Statistics",17]]))}</div>`)}
+
+function report(){const S=(t,b)=>`<div class="card"><h3 style="margin-bottom:8px">${t}</h3><p class="sm mu">${b}</p></div>`;
+return shell("report",`<div class="row" style="flex-wrap:wrap;margin-bottom:20px"><div><h1 style="font-size:26px">Candidate Report</h1><p class="mu">Ananya Ramesh • AI/ML Engineer</p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" onclick="toast('PDF export started (mock)')">Export PDF</button><button class="btn" onclick="toast('Report downloaded (mock)')">Download Report</button><button class="btn p" onclick="toast('Share link copied (mock)')">Share Report</button></div></div>
+<div class="grid c2">${S("Candidate Profile","B.E. CSE (AI & DS). ML internship (8 months). Projects: fraud detection, resume NLP classifier.")}${S("Job Requirements","Python, Machine Learning, SQL, Statistics. Preferred: TensorFlow, MLOps.")}${S("Skill Match & Project Relevance","Skill match 91%. Project relevance 94%. Overall match 87%.")}${S("Skill Gaps","TensorFlow (weak) and MLOps (missing). Suggested path: TensorFlow, deployment, Docker, MLOps.")}${S("Interview Evaluation","Technical 86%, Problem Solving 82%, Communication 78%, Role Understanding 91%. Overall 84%.")}${S("Evidence & AI Analysis","Python and ML projects detected in resume, SQL certification verified. AI output is decision support only.")}</div>
+<div class="card" style="margin-top:16px"><h3 style="margin-bottom:8px">Recruiter Notes</h3><textarea class="in" rows="4" placeholder="Add your final assessment. The recruiter makes the decision."></textarea></div>`)}
+
+const BOT=[["shortlist","3 candidates are currently Strong Matches for AI/ML Engineer: Ananya Ramesh (87%), Priya Nair (85%) and one more pending review. This is a suggestion; you make the shortlist decision."],["gap","Most common gaps across 86 applicants: MLOps (46%), TensorFlow (38%), Docker (31%). Want a learning path for any of them?"],["fair","Fairness Monitor: all monitored groups are within the 0.8 selection-rate guideline. 2 signals are waiting for your review."],["interview","18 interviews are complete with a 79% average. 4 are still awaiting evaluation."]];
+let CH=[["a","Hi, I'm your Recruiter Assistant. Ask about shortlists, skill gaps, interviews or fairness. I advise; you decide."]];
+function chatHtml(){return CH.map(m=>`<div class="msg ${m[0]}">${m[1]}</div>`).join("")}
+function send(q){q=q||$("#ci").value.trim();if(!q)return;$("#ci").value="";CH.push(["u",q]);$("#chat").innerHTML=chatHtml();const r=BOT.find(b=>q.toLowerCase().includes(b[0]));setTimeout(()=>{CH.push(["a",r?r[1]:"I can help with shortlists, skill gaps, interviews and fairness. Try one of the suggestions above."]);$("#chat").innerHTML=chatHtml();$("#chat").scrollTop=9999},700)}
+function assistant(){return shell("assistant",`<h1 style="font-size:26px;margin-bottom:4px">AI Recruiter Assistant</h1><p class="mu" style="margin-bottom:18px">Ask in plain language. Answers come from the agents' outputs.</p>
+<div class="card stack" style="max-width:760px"><div style="display:flex;gap:8px;flex-wrap:wrap">${[["Who should I shortlist?","shortlist"],["Top skill gaps","gap"],["Fairness status","fair"],["Interview summary","interview"]].map(x=>`<span class="chip" onclick="send('${x[1]}')">${x[0]}</span>`).join("")}</div>
+<div id="chat" class="stack" style="display:flex;flex-direction:column;gap:10px;min-height:260px;max-height:380px;overflow:auto">${chatHtml()}</div>
+<div style="display:flex;gap:8px"><input id="ci" class="in" style="margin:0" placeholder="Ask the assistant…" onkeydown="if(event.key=='Enter')send()"><button class="btn p" onclick="send()">Send</button></div></div>`)}
+
+const LOGS=["Job Agent parsed 'AI/ML Engineer' requirements","Resume Agent structured 3 new resumes","Skill Agent normalised 'sklearn' → scikit-learn","Matching Agent scored candidate #41 at 82%","Gap Agent flagged MLOps for candidate #38","Interview Agent adapted question difficulty","Evaluation Agent scored answer set #7","Explainability Agent attached evidence to match #41"];
+let PR=AG.map((a,i)=>[40+i*6,a[1]]);
+function monitor(){setTimeout(()=>{clearInterval(tm);let n=0;tm=setInterval(()=>{if(!$("#lg"))return;const i=Math.floor(Math.random()*8);PR[i][0]=Math.min(100,PR[i][0]+Math.floor(Math.random()*14));if(PR[i][0]>=100)PR[i][0]=20;$("#ag").innerHTML=agRows();const t=new Date().toLocaleTimeString();$("#lg").innerHTML=`<div>[${t}] ${LOGS[i]}</div>`+$("#lg").innerHTML.split("</div>").slice(0,7).join("</div>")+"";n++},1100)},0);
+return shell("monitor",`<h1 style="font-size:26px;margin-bottom:4px"><span class="dot run"></span>Live Multi-Agent Monitoring</h1><p class="mu" style="margin-bottom:18px">Real-time status and activity across all agents (simulated stream).</p>
+<div class="grid c4">${[["Active Agents","6 / 8"],["Tasks / min","24"],["Avg Latency","2.1s"],["Errors","0"]].map(k=>`<div class="card kpi"><span class="mu sm">${k[0]}</span><b>${k[1]}</b></div>`).join("")}</div>
+<div class="grid c2" style="margin-top:16px"><div class="card"><h3 style="margin-bottom:14px">Agent Workload</h3><div id="ag" class="stack">${agRows()}</div></div><div class="card"><h3 style="margin-bottom:14px">Activity Log</h3><div id="lg" class="log"><div>Waiting for events…</div></div></div></div>`)}
+function agRows(){return AG.map((a,i)=>`<div><div class="row sm"><span><span class="dot ${PR[i][1]=='Queued'?'':'run'}"></span>${a[0]}</span><b>${PR[i][0]}%</b></div>${bar(PR[i][0],6)}</div>`).join("")}
+
+function parser(){return shell("parser",`<h1 style="font-size:26px;margin-bottom:4px">Smart Resume Parser</h1><p class="mu" style="margin-bottom:18px">Turns unstructured resumes (PDF, DOCX, TXT) into a structured profile with confidence scores.</p>
+<div class="grid c2"><div class="card"><div class="row"><h3>Sample Resume</h3><span class="tag t-b">ananya_ramesh.pdf</span></div><pre class="sm mu" style="white-space:pre-wrap;font:12px/1.7 ui-monospace,Menlo,monospace;margin:14px 0">ANANYA RAMESH
+B.E. Computer Science (AI &amp; DS), 2025
+Skills: Python, scikit-learn, SQL, Pandas
+Project: Fraud detection using XGBoost
+Project: Resume NLP classifier
+Cert: SQL for Data Science
+Intern: ML Engineer, 8 months</pre><button class="btn p" onclick="parseIt()">⎘ Parse with Resume Agent</button></div><div id="po" class="card mu">Parsed profile will appear here.</div></div>`)}
+function parseIt(){const o=$("#po");o.innerHTML='<b><span class="dot run"></span>Resume Analysis Agent parsing…</b>';setTimeout(()=>{o.className="card";o.innerHTML=`<h3 style="margin-bottom:12px">Structured Profile</h3>${hb([["Name",99],["Education",97],["Skills (4)",94],["Projects (2)",92],["Certifications (1)",90],["Experience (8 mo)",88]])}<p class="sm mu" style="margin-top:12px">Bars show extraction confidence. Low-confidence fields are flagged for recruiter review.</p>`},1400)}
+
+let AL=1,TR=[["Medium","How do you handle class imbalance in fraud detection?"]];const LV=["Easy","Medium","Hard"],QB=["What is overfitting and how do you detect it?","How do you handle class imbalance in fraud detection?","Design drift monitoring for a deployed fraud model."];
+function adaptive(){return shell("adaptive",`<h1 style="font-size:26px;margin-bottom:4px">Adaptive AI Interview</h1><p class="mu" style="margin-bottom:18px">Each next question depends on the quality of the previous answer. Simulate an answer to see it adapt.</p>
+<div class="grid c2"><div class="card stack"><span class="tag t-b">Current difficulty: <span id="lv">${LV[AL]}</span></span><h3 id="aq" style="font-size:18px">${TR[TR.length-1][1]}</h3><p class="sm mu">Simulate the candidate's answer:</p><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" onclick="adapt(-1)">Weak answer</button><button class="btn" onclick="adapt(0)">Good answer</button><button class="btn p" onclick="adapt(1)">Strong answer</button></div></div>
+<div class="card"><h3 style="margin-bottom:12px">Adaptation Trace</h3><div id="tr" class="stack">${trHtml()}</div></div></div>`)}
+function trHtml(){return TR.map((t,i)=>`<div class="sm"><span class="tag t-b">Q${i+1} • ${t[0]}</span> <span class="mu">${t[1]}</span></div>`).join("")}
+function adapt(d){AL=Math.max(0,Math.min(2,AL+d));TR.push([LV[AL],QB[AL]]);$("#lv").textContent=LV[AL];$("#aq").textContent=QB[AL];$("#tr").innerHTML=trHtml()}
+
+function fairness(){const G=[["Gender",[["Women",33],["Men",35]]],["Institution Tier",[["Tier 1",36],["Tier 2",33],["Other",31]]],["Age Band",[["20–25",34],["26–30",35],["31+",30]]]];
+const gr=G.map(g=>{const m=Math.max(...g[1].map(x=>x[1]));return`<div class="card"><h3 style="margin-bottom:12px">${g[0]}</h3>${g[1].map(x=>{const r=(x[1]/m).toFixed(2);return`<div style="margin-bottom:10px"><div class="row sm"><span>${x[0]} • ${x[1]}% shortlisted</span><span class="tag ${r>=0.8?'t-ok':'t-wn'}">ratio ${r}</span></div>${bar(x[1]/m*100,6)}</div>`}).join("")}</div>`}).join("");
+return shell("fairness",`<h1 style="font-size:26px;margin-bottom:4px">Bias &amp; Fairness Monitor</h1><p class="mu" style="margin-bottom:18px">Tracks selection-rate parity against the 0.8 guideline. Monitoring only; it does not make or block hiring decisions.</p>
+<div class="grid c3">${gr}</div><div class="grid c2" style="margin-top:16px"><div class="card"><h3 style="margin-bottom:10px">Masked from scoring agents</h3><div style="display:flex;gap:8px;flex-wrap:wrap">${["Name","Photo","Gender","Age","Marital status","Address"].map(x=>`<span class="chip">${x}</span>`).join("")}</div></div>
+<div class="card"><h3 style="margin-bottom:10px">Signals awaiting review</h3><p class="sm" style="margin-bottom:8px"><span class="tag t-wn">Review</span> Graduation year correlates with match score</p><p class="sm"><span class="tag t-wn">Review</span> Institution tier weighs on project score</p></div></div>
+<div class="card" style="margin-top:16px"><h3 style="margin-bottom:10px">Human override log</h3><p class="sm mu">Recruiter R. Kumar advanced Arjun Mehta despite a 72% match, noting strong open-source work. Recorded for audit.</p></div>`)}
+
+let pt;const PL=["Job Agent parsed 12 requirements for AI/ML Engineer","Matching Agent attached 6 evidence links to Ananya Ramesh","Fairness Monitor: no parity flags in last 40 screenings","Interview Agent raised difficulty to level 7","Skill Gap Agent: Docker gap detected for 31% of candidates","Explainability Agent: evidence trail ready for review"];
+function pulse(){const e=$("#pulse");if(!e)return;let i=0;e.textContent=PL[0];pt=setInterval(()=>{const x=$("#pulse");if(x)x.textContent=PL[i=(i+1)%PL.length]},2600)}
+function route(){const p=location.hash.replace("#/","")||"";clearInterval(tm);clearInterval(pt);
+const m={"":landing,dashboard,agents,candidate,gaps,interview,jobs,compare,analytics,report,assistant,monitor,parser,adaptive,fairness};$("#app").innerHTML=(m[p]||landing)();window.scrollTo(0,0);pulse()}
+addEventListener("hashchange",route);route();
+</script></body></html>
