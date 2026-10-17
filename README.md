@@ -6,7 +6,7 @@ AgentHire AI shows how eight cooperating AI agents can support a recruiter from 
 
 > **Prototype notice:** All candidates, scores, analytics and fairness figures are illustrative mock data, and the agents are simulated in the interface. No real language model, resume parsing, authentication or database is included. The project demonstrates the design and workflow, not model accuracy.
 
-**Live demo:** [add your Vercel URL here]
+**Live demo:** https://agent-hire-ai-fixed-1.vercel.app/
 
 ## The agent pipeline
 
@@ -65,7 +65,7 @@ Real LLM-based agents with traces, real resume parsing (PDF, DOCX, TXT), authent
 
 ## Disclosure
 
-Developed by [Your name]. The initial prototype code and report draft were generated with Claude (Anthropic) from my specification and reviewed by me. [Edit to describe your own review and testing.]
+Developed by Pavan. The initial prototype code and report draft were generated with Claude (Anthropic) from my specification and reviewed by me. [Edit to describe your own review and testing.]
 
 ## License
 
